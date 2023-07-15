@@ -1,18 +1,36 @@
 import { toast } from "react-toastify";
-
+import { useCreateBookMutation } from "../redux/Apis/bookApi";
+interface Ibook {
+  title: string;
+  author: string;
+  genere: string;
+  date: string;
+}
 const BookForm = () => {
-  const handleAddBook = (e: any) => {
+  const [createBook, { isLoading }] = useCreateBookMutation();
+  const handleAddBook = async (e: any) => {
     e.preventDefault();
     const title = e.target.title.value;
     const author = e.target.author.value;
     const genre = e.target.genre.value;
-    const date = e.target.date.value;
+    const publicationDate = e.target.publicationDate.value;
 
-    if (!title || !author || !genre || !date) {
+    if (!title || !author || !genre || !publicationDate) {
       toast.warn("All fields are required.");
     } else {
-      toast.success("From sumbited.");
-      e.target.reset();
+      try {
+        const data = await createBook({
+          title,
+          author,
+          genre,
+          publicationDate,
+        }).unwrap();
+        toast.success(data.message);
+        e.target.reset();
+      } catch (error: any) {
+        toast.error(error.message);
+        console.log(error);
+      }
     }
   };
   return (
@@ -43,10 +61,10 @@ const BookForm = () => {
         <input
           type="date"
           placeholder="Publication Date"
-          name="date"
+          name="publicationDate"
           className="input input-bordered w-full max-w-xs"
         />
-        <button className="btn btn-primary" type="submit">
+        <button disabled={isLoading} className="btn btn-primary" type="submit">
           Add
         </button>
       </form>
