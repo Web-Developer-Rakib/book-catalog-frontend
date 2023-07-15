@@ -1,9 +1,11 @@
 import { toast } from "react-toastify";
 import { useCreateBookMutation } from "../redux/Apis/bookApi";
 export interface IBook {
+  _id: string;
   title: string;
   author: string;
   genre: string;
+  reviews: string;
   publicationDate: string;
 }
 const BookForm = () => {
