@@ -1,5 +1,11 @@
+import BookForm from "../../components/BookForm";
+
 const EditBook = () => {
-  return <div>Edit books</div>;
+  return (
+    <div className="h-[100vh] pt-10">
+      <BookForm />
+    </div>
+  );
 };
 
 export default EditBook;

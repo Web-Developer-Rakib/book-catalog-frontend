@@ -1,5 +1,5 @@
 const AllBooks = () => {
-  return <div>All Books</div>;
+  return <div className="h-[100vh] pt-10">All Books</div>;
 };
 
 export default AllBooks;
