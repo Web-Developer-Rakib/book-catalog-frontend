@@ -1,4 +1,6 @@
+import { useNavigate } from "react-router-dom";
 const BookSearchBar = () => {
+  const navigate = useNavigate();
   return (
     <div className="flex justify-between">
       <h2 className="text-3xl">All books</h2>
@@ -21,7 +23,10 @@ const BookSearchBar = () => {
         </select>
         <button className="btn join-item">Search</button>
       </div>
-      <button className="btn btn-primary">
+      <button
+        className="btn btn-success"
+        onClick={() => navigate("/add-book/")}
+      >
         Add book{" "}
         <svg
           xmlns="http://www.w3.org/2000/svg"

@@ -1,4 +1,7 @@
+import { useNavigate } from "react-router-dom";
+
 const BooksCard = () => {
+  const navigate = useNavigate();
   return (
     <div className="card card-side bg-base-100 shadow-xl mx-10">
       <div className="card-body">
@@ -13,7 +16,10 @@ const BooksCard = () => {
           <b>Publication Date:</b> 23 March 1995
         </p>
         <div className="card-actions justify-end">
-          <button className="btn btn-primary">
+          <button
+            onClick={() => navigate("/book-details/bookId675464")}
+            className="btn btn-primary"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -34,7 +40,10 @@ const BooksCard = () => {
               />
             </svg>
           </button>
-          <button className="btn btn-info">
+          <button
+            className="btn btn-info"
+            onClick={() => navigate("/edit-book/bookId675464")}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
