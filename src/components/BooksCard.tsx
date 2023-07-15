@@ -1,19 +1,25 @@
+import moment from "moment";
 import { useNavigate } from "react-router-dom";
+import { IBook } from "./BookForm";
 
-const BooksCard = () => {
+interface IProps {
+  book: IBook;
+}
+const BooksCard = ({ book }: IProps) => {
   const navigate = useNavigate();
   return (
     <div className="card card-side bg-base-100 shadow-xl mx-10">
       <div className="card-body">
         <h2 className="card-title">Harry poter</h2>
         <p>
-          <b>Author:</b> JK Roulin
+          <b>Author:</b> {book.author}
         </p>
         <p>
-          <b>Genere:</b> Friction
+          <b>Genere:</b> {book.genre}
         </p>
         <p>
-          <b>Publication Date:</b> 23 March 1995
+          <b>Publication Date:</b>{" "}
+          {moment(book.publicationDate).format("MMM Do YY")}
         </p>
         <div className="card-actions justify-end">
           <button

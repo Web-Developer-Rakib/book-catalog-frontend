@@ -1,10 +1,10 @@
 import { toast } from "react-toastify";
 import { useCreateBookMutation } from "../redux/Apis/bookApi";
-interface Ibook {
+export interface IBook {
   title: string;
   author: string;
-  genere: string;
-  date: string;
+  genre: string;
+  publicationDate: string;
 }
 const BookForm = () => {
   const [createBook, { isLoading }] = useCreateBookMutation();
@@ -29,7 +29,6 @@ const BookForm = () => {
         e.target.reset();
       } catch (error: any) {
         toast.error(error.message);
-        console.log(error);
       }
     }
   };

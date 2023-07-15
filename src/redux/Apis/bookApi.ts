@@ -12,7 +12,10 @@ export const bookApi = createApi({
         body: book,
       }),
     }),
+    getAllBooks: builder.query({
+      query: () => "/",
+    }),
   }),
 });
 
-export const { useCreateBookMutation } = bookApi;
+export const { useCreateBookMutation, useGetAllBooksQuery } = bookApi;

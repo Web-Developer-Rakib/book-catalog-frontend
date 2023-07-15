@@ -1,8 +1,9 @@
 import { useNavigate } from "react-router-dom";
+
 const BookSearchBar = () => {
   const navigate = useNavigate();
   return (
-    <div className="flex justify-between">
+    <div className="flex justify-between flex-wrap">
       <h2 className="text-3xl">All books</h2>
       <div className="join">
         <div>
