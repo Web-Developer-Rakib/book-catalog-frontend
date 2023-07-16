@@ -6,6 +6,7 @@ import BookDetails from "../views/BookDetails/BookDetails";
 import EditBook from "../views/EditBook/EditBook";
 import Login from "../views/Login/Login";
 import Register from "../views/Register/Register";
+import RouteProtector from "./RouteProtector";
 
 const router = createBrowserRouter([
   {
@@ -26,11 +27,19 @@ const router = createBrowserRouter([
       },
       {
         path: "add-book",
-        element: <AddBook />,
+        element: (
+          <RouteProtector>
+            <AddBook />
+          </RouteProtector>
+        ),
       },
       {
         path: "edit-book/:bookId",
-        element: <EditBook />,
+        element: (
+          <RouteProtector>
+            <EditBook />
+          </RouteProtector>
+        ),
       },
       {
         path: "book-details/:bookId",

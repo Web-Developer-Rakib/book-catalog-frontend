@@ -1,10 +1,19 @@
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { useRegisterUserMutation } from "../redux/Apis/authApi";
+import {
+  useLoginUserMutation,
+  useRegisterUserMutation,
+} from "../redux/Apis/authApi";
+import { userLogin } from "../redux/Reducers/userSlice";
+import { useAppDispatch } from "../redux/hooks";
 interface IProps {
   register: boolean;
 }
 const LoginRegisterForm = ({ register }: IProps) => {
   const [registerUser, { isLoading }] = useRegisterUserMutation();
+  const [loginUser] = useLoginUserMutation();
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const handleRegistration = async (e: any) => {
     e.preventDefault();
     const email = e.target.email.value;
@@ -28,14 +37,26 @@ const LoginRegisterForm = ({ register }: IProps) => {
       }
     }
   };
-  const handleLogin = (e: any) => {
+  const handleLogin = async (e: any) => {
     e.preventDefault();
     const email = e.target.email.value;
     const password = e.target.password.value;
     if (!email || !password) {
       toast.warn("All fields are required.");
     } else {
-      toast.success("Login Success!");
+      try {
+        const data: any = await loginUser({ email, password });
+        if (data.data.message === "Invalid password.") {
+          toast.warn(data.data.message);
+        } else {
+          toast.success(data.data.message);
+          localStorage.setItem("accessToken", data.data.data.accessToken);
+          dispatch(userLogin(data.data.data.usersData.email));
+          navigate("/");
+        }
+      } catch (error: any) {
+        toast.error(error.message);
+      }
     }
   };
   return (

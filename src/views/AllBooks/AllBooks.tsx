@@ -13,6 +13,8 @@ const AllBooks = () => {
           <div className="flex justify-center">
             <span className="loading loading-bars loading-lg"></span>
           </div>
+        ) : !data.data.length ? (
+          <h3 className="text-xl text-center">No books found</h3>
         ) : (
           data.data.map((book: IBook) => <BooksCard book={book} />)
         )}

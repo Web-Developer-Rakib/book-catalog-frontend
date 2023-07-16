@@ -1,14 +1,18 @@
 import { toast } from "react-toastify";
 import { useCreateBookMutation } from "../redux/Apis/bookApi";
+import { useAppSelector } from "../redux/hooks";
 export interface IBook {
   _id: string;
   title: string;
   author: string;
   genre: string;
   reviews: string;
+  user: string;
   publicationDate: string;
 }
+
 const BookForm = () => {
+  const user = useAppSelector((state) => state.user.email);
   const [createBook, { isLoading }] = useCreateBookMutation();
   const handleAddBook = async (e: any) => {
     e.preventDefault();
@@ -25,6 +29,7 @@ const BookForm = () => {
           title,
           author,
           genre,
+          user,
           publicationDate,
         }).unwrap();
         toast.success(data.message);

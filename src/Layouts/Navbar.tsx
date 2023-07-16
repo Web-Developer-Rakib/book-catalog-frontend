@@ -1,5 +1,13 @@
 import { Link } from "react-router-dom";
+import { userLogout } from "../redux/Reducers/userSlice";
+import { useAppDispatch, useAppSelector } from "../redux/hooks";
 const Navbar = () => {
+  const user = useAppSelector((state) => state.user.email);
+  const dispatch = useAppDispatch();
+  const handleLogout = () => {
+    dispatch(userLogout());
+    console.log(user);
+  };
   return (
     <div className="navbar bg-base-100">
       <div className="flex-1">
@@ -11,12 +19,20 @@ const Navbar = () => {
             <li>
               <Link to="/">All books</Link>
             </li>
-            <li>
-              <Link to="/register">Register</Link>
-            </li>
-            <li>
-              <Link to="/login">Login</Link>
-            </li>
+            {!user ? (
+              <>
+                <li>
+                  <Link to="/register">Register</Link>
+                </li>
+                <li>
+                  <Link to="/login">Login</Link>
+                </li>
+              </>
+            ) : (
+              <li>
+                <a onClick={handleLogout}>Logout</a>
+              </li>
+            )}
           </ul>
         </div>
       </div>
