@@ -60,12 +60,11 @@ const BookForm = ({ editing }: IProps) => {
       toast.warn("All fields are required.");
     } else {
       try {
-        const updatedData = await updateBook({ bookId, updatedBook }).unwrap();
-        toast.success(updatedData.message);
-        console.log(updatedData);
+        await updateBook({ bookId, updatedBook }).unwrap();
       } catch (error: any) {
-        toast.error(error.message);
-        console.log(error);
+        if (error.data === "OK") {
+          toast.success("Book updated successfully.");
+        } else toast.error(error.message);
       }
     }
   };
