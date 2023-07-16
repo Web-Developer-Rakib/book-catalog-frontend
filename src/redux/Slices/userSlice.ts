@@ -1,10 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-interface Iuser {
+interface IUser {
   email: string;
 }
 const storedEmail = localStorage.getItem("userEmail");
-const initialState: Iuser = {
+const initialState: IUser = {
   email: storedEmail ? storedEmail : "",
 };
 

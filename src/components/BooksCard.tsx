@@ -37,7 +37,7 @@ const BooksCard = ({ book }: IProps) => {
           <b>Author:</b> {book.author}
         </p>
         <p>
-          <b>Genere:</b> {book.genre}
+          <b>Genre:</b> {book.genre}
         </p>
         <p>
           <b>Publication Date:</b>{" "}
