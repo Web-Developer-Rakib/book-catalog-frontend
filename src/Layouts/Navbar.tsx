@@ -6,7 +6,6 @@ const Navbar = () => {
   const dispatch = useAppDispatch();
   const handleLogout = () => {
     dispatch(userLogout());
-    console.log(user);
   };
   return (
     <div className="navbar bg-base-100">
