@@ -1,6 +1,5 @@
-import { IBook } from "../../components/BookForm";
 import BookSearchBar from "../../components/BookSearchBar";
-import BooksCard from "../../components/BooksCard";
+import BooksCard, { IBook } from "../../components/BooksCard";
 import { useGetAllBooksQuery } from "../../redux/Apis/bookApi";
 
 const AllBooks = () => {

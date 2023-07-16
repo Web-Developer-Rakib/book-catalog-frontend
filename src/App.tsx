@@ -3,7 +3,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 import MainLayout from "./Layouts/MainLayout";
-import { userLogin } from "./redux/Reducers/userSlice";
+import { userLogin } from "./redux/Slices/userSlice";
 import { useAppDispatch, useAppSelector } from "./redux/hooks";
 
 function App() {

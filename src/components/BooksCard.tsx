@@ -1,14 +1,34 @@
 import moment from "moment";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { useDeleteBookMutation } from "../redux/Apis/bookApi";
 import { useAppSelector } from "../redux/hooks";
-import { IBook } from "./BookForm";
-
+export interface IBook {
+  _id: string;
+  title: string;
+  author: string;
+  genre: string;
+  reviews: string;
+  user: string;
+  publicationDate: string;
+}
 interface IProps {
   book: IBook;
 }
 const BooksCard = ({ book }: IProps) => {
   const navigate = useNavigate();
   const user = useAppSelector((state) => state.user.email);
+  const [deleteBook, { data, error }] = useDeleteBookMutation();
+  useEffect(() => {
+    if (data) {
+      toast.success(data.message);
+    }
+    if (error) {
+      toast.success("Something went wrong.");
+    }
+  }, [data, error]);
+
   return (
     <div className="card card-side bg-base-100 shadow-xl mx-10">
       <div className="card-body">
@@ -69,7 +89,10 @@ const BooksCard = ({ book }: IProps) => {
                   />
                 </svg>
               </button>
-              <button className="btn btn-error">
+              <button
+                className="btn btn-error"
+                onClick={() => deleteBook(book._id)}
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"

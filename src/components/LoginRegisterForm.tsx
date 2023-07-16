@@ -4,7 +4,7 @@ import {
   useLoginUserMutation,
   useRegisterUserMutation,
 } from "../redux/Apis/authApi";
-import { userLogin } from "../redux/Reducers/userSlice";
+import { userLogin } from "../redux/Slices/userSlice";
 import { useAppDispatch } from "../redux/hooks";
 interface IProps {
   register: boolean;

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { userLogout } from "../redux/Reducers/userSlice";
+import { userLogout } from "../redux/Slices/userSlice";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 const Navbar = () => {
   const user = useAppSelector((state) => state.user.email);
