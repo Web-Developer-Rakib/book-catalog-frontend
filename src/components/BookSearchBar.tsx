@@ -1,16 +1,19 @@
 import { useNavigate } from "react-router-dom";
-import { setFilter } from "../redux/Slices/searchSlice";
+import { setSearchFilter, setSearchText } from "../redux/Slices/searchSlice";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 
 const BookSearchBar = () => {
   const navigate = useNavigate();
   const user = useAppSelector((state) => state.user.email);
-  const filter = useAppSelector((state) => state.search.filter);
+  const filter = useAppSelector((state) => state.search.searchFilter);
+
   const dispatch = useAppDispatch();
-  const handleChangeFilter = (e: any) => {
-    dispatch(setFilter(e.target.value));
+  const handleFilter = (e: any) => {
+    dispatch(setSearchFilter(e.target.value));
   };
-  const handleSearch = () => {};
+  const handleSearchText = (e: any) => {
+    dispatch(setSearchText(e.target.value));
+  };
   return (
     <div className="flex justify-between flex-wrap">
       <h2 className="text-3xl">All books</h2>
@@ -18,6 +21,7 @@ const BookSearchBar = () => {
         <div>
           <div>
             <input
+              onChange={handleSearchText}
               className="input input-bordered join-item"
               placeholder={`Search by ${filter}`}
             />
@@ -25,16 +29,15 @@ const BookSearchBar = () => {
         </div>
         <select
           className="select select-bordered join-item"
-          onChange={handleChangeFilter}
+          onChange={handleFilter}
         >
           <option disabled selected>
             Filter
           </option>
-          <option value="name">Name</option>
+          <option value="title">Title</option>
           <option value="author">Author</option>
           <option value="genre">Genre</option>
         </select>
-        <button className="btn join-item">Search</button>
       </div>
       {user && (
         <button

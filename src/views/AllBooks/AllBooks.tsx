@@ -1,9 +1,12 @@
 import BookSearchBar from "../../components/BookSearchBar";
 import BooksCard, { IBook } from "../../components/BooksCard";
 import { useGetAllBooksQuery } from "../../redux/Apis/bookApi";
+import { useAppSelector } from "../../redux/hooks";
 
 const AllBooks = () => {
-  const { data, isLoading } = useGetAllBooksQuery(undefined);
+  const { searchText, searchFilter } = useAppSelector((state) => state.search);
+  const query = `search=${searchText}&filter=${searchFilter}`;
+  const { data, isLoading } = useGetAllBooksQuery(query);
   return (
     <div className="pt-10 px-10">
       <BookSearchBar />

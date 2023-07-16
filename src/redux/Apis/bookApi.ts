@@ -15,7 +15,7 @@ export const bookApi = createApi({
       invalidatesTags: ["books"],
     }),
     getAllBooks: builder.query({
-      query: () => "/",
+      query: (queries) => `/?${queries}`,
       providesTags: ["books"],
     }),
     getSingleBook: builder.query({
