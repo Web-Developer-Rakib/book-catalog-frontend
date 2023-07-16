@@ -9,7 +9,7 @@ const initialState: ISearch = {
   searchFilter: "title",
 };
 const searchSlice = createSlice({
-  name: "user",
+  name: "search",
   initialState: initialState,
   reducers: {
     setSearchText: (state, action) => {
