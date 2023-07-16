@@ -1,3 +1,4 @@
+import moment from "moment";
 import { useParams } from "react-router-dom";
 import { useGetSingleBookQuery } from "../../redux/Apis/bookApi";
 
@@ -23,7 +24,8 @@ const BookDetails = () => {
             <b>Genre:</b> {data.data.genre}
           </p>
           <p>
-            <b>Publication Date:</b> {data.data.publicationDate}
+            <b>Publication Date:</b>{" "}
+            {moment(data.data.publicationDate).format("MMM Do YY")}
           </p>
           <p>
             <b>Reviews:</b> {data.data.reviews}

@@ -72,7 +72,7 @@ const BooksCard = ({ book }: IProps) => {
             <>
               <button
                 className="btn btn-info"
-                onClick={() => navigate("/edit-book/bookId675464")}
+                onClick={() => navigate(`/edit-book/${book._id}`)}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
